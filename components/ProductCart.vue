@@ -1,20 +1,36 @@
 <template>
   <div class="product-cart">
-    <NuxtLink :to="product.user.links.html" target="_blank" class="product-cart__header">
+    <NuxtLink
+      :to="product.user.links.html"
+      target="_blank"
+      class="product-cart__header"
+    >
       <div class="photo">
-        <img :src="product?.user.profile_image.small" v-if="product?.user.profile_image.small"/>
+        <img
+          :src="product?.user.profile_image.small"
+          v-if="product?.user.profile_image.small"
+        />
       </div>
 
       <div class="author">
         <div class="name">{{ product?.user.name }}</div>
         <div class="link">
-          <NuxtLink :to="'https://www.instagram.com/' + product.user.instagram_username" target="_blank" class="link__rout" v-if="product?.user.instagram_username">{{ `@${product.user.instagram_username}` }}</NuxtLink>
+          <NuxtLink
+            :to="'https://www.instagram.com/' + product.user.instagram_username"
+            target="_blank"
+            class="link__rout"
+            v-if="product?.user.instagram_username"
+            >{{ `@${product.user.instagram_username}` }}</NuxtLink
+          >
           <span v-else>-</span>
         </div>
       </div>
     </NuxtLink>
-    
-    <div class="product-cart__images" :style="{ backgroundImage: 'url(' + product?.urls.regular + ')'}"></div>
+
+    <div
+      class="product-cart__images"
+      :style="{ backgroundImage: 'url(' + product?.urls.regular + ')' }"
+    ></div>
     <div class="product-cart__footer">
       <CardControl v-model="product.quantity" />
       <div class="price" v-if="product?.price">
@@ -32,23 +48,25 @@ import { watch } from 'vue';
 const props = defineProps({
   product: Object,
   addBasket: Function,
-  removeBasket: Function
-})
+  removeBasket: Function,
+});
 
-watch(() => props.product?.quantity, (newVal) => {
-  if (newVal > 0) {
-    if (props.addBasket) {
-      props.addBasket(props.product, newVal);
+watch(
+  () => props.product?.quantity,
+  (newVal) => {
+    if (newVal > 0) {
+      if (props.addBasket) {
+        props.addBasket(props.product, newVal);
+      }
     }
-  } 
 
-  if (newVal == 0) {
-    if (props.removeBasket) {
-      props.removeBasket(props.product)
+    if (newVal == 0) {
+      if (props.removeBasket) {
+        props.removeBasket(props.product);
+      }
     }
-  }
-})
-
+  },
+);
 </script>
 
 <style lang="scss" scoped>
@@ -56,7 +74,7 @@ watch(() => props.product?.quantity, (newVal) => {
 
 .product-cart {
   width: 100%;
-  
+
   &__header {
     display: flex;
     padding: 10px;
@@ -76,7 +94,7 @@ watch(() => props.product?.quantity, (newVal) => {
         border-radius: 50%;
       }
     }
-    
+
     .author {
       padding-left: 10px;
       font-size: 12px;
@@ -84,10 +102,10 @@ watch(() => props.product?.quantity, (newVal) => {
         font-weight: 700;
       }
       .link {
-        color: #8D8D8D;
+        color: #8d8d8d;
         &__rout {
           text-decoration: none;
-          color: #8D8D8D;
+          color: #8d8d8d;
         }
       }
     }
@@ -100,11 +118,11 @@ watch(() => props.product?.quantity, (newVal) => {
     justify-content: space-between;
     align-items: center;
 
-    @include sm-screen() { 
+    @include sm-screen() {
       padding-bottom: 6px;
     }
 
-    @include md-screen() { 
+    @include md-screen() {
       padding-bottom: 8px;
     }
 

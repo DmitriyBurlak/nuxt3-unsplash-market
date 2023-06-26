@@ -2,7 +2,7 @@
 
 Nuxt3, Vue3, pinia, vue-router, composition api, TypeScript, scss
 
-Использванно предложенное api - [unsplash](https://unsplash.com/developers/) 
+Использванно предложенное api - [unsplash](https://unsplash.com/developers/)
 При каждом получении данных, в качестве примера подмешивается рандомная цена
 
 [Пример работы](https://lovely-dango-cb2098.netlify.app/)

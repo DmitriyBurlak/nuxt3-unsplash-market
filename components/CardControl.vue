@@ -1,13 +1,25 @@
 <template>
-    <div class="control">
-      <div class="control__icon" @click="increment">
-        <object type="image/svg+xml" data="/icons/plus.svg" width="17" height="17" class="icon"></object>
-      </div>
-      <div class="control__icon minus" @click="decrement">
-        <object type="image/svg+xml" data="/icons/minus.svg" width="9" height="9" class="icon"></object>
-      </div>
-      <div class="control__value">{{ quantity }}</div>
+  <div class="control">
+    <div class="control__icon" @click="increment">
+      <object
+        type="image/svg+xml"
+        data="/icons/plus.svg"
+        width="17"
+        height="17"
+        class="icon"
+      ></object>
     </div>
+    <div class="control__icon minus" @click="decrement">
+      <object
+        type="image/svg+xml"
+        data="/icons/minus.svg"
+        width="9"
+        height="9"
+        class="icon"
+      ></object>
+    </div>
+    <div class="control__value">{{ quantity }}</div>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -15,30 +27,30 @@ import { ref, defineEmits } from 'vue';
 
 const props = withDefaults(
   defineProps<{
-    modelValue: number
+    modelValue: number;
   }>(),
   {
-     modelValue: 0,
+    modelValue: 0,
   },
-)
+);
 
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits(['update:modelValue']);
 
-const quantity = ref(0)
-quantity.value = props.modelValue
+const quantity = ref(0);
+quantity.value = props.modelValue;
 
 const increment = () => {
   quantity.value += 1;
-  emit('update:modelValue', quantity.value)
-}
+  emit('update:modelValue', quantity.value);
+};
 
 const decrement = () => {
   if (quantity.value <= 0) {
     return;
   }
   quantity.value -= 1;
-  emit('update:modelValue', quantity.value)
-}
+  emit('update:modelValue', quantity.value);
+};
 </script>
 
 <style lang="scss" scoped>

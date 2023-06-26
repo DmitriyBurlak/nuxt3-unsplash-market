@@ -14,7 +14,13 @@
       </div>
       <div class="basket">
         {{ formatNumbers(purchaseAmount) }} руб.
-        <object type="image/svg+xml" data="/icons/basket.svg" width="24" height="24" class="basket__icon"></object>
+        <object
+          type="image/svg+xml"
+          data="/icons/basket.svg"
+          width="24"
+          height="24"
+          class="basket__icon"
+        ></object>
       </div>
     </div>
   </footer>
@@ -24,16 +30,14 @@
 import { computed } from 'vue';
 import { formatNumbers } from '@/utils/formaterUtil';
 import { useBasketStore } from '@/store/basket.store';
-import Paginate from "vuejs-paginate-next";
+import Paginate from 'vuejs-paginate-next';
 
 const props = defineProps({
   params: Object,
-})
+});
 
 const BasketStore = useBasketStore();
 const purchaseAmount = computed(() => BasketStore.purchaseAmount);
-
-
 </script>
 
 <style scoped lang="scss">
@@ -46,8 +50,8 @@ const purchaseAmount = computed(() => BasketStore.purchaseAmount);
   width: 100%;
   background-color: rgba(0, 0, 0, 0.89);
 
-  @include sm-screen() { 
-      width: 100%;
+  @include sm-screen() {
+    width: 100%;
   }
 
   &__wrapper {
@@ -59,17 +63,17 @@ const purchaseAmount = computed(() => BasketStore.purchaseAmount);
     display: flex;
     justify-content: space-between;
 
-    @include sm-screen() { 
+    @include sm-screen() {
       width: calc(100% - 40px);
       padding: 18px 0;
       justify-content: flex-end;
     }
 
-    @include md-screen() { 
+    @include md-screen() {
       width: 86%;
     }
 
-    @include lg-screen() { 
+    @include lg-screen() {
       width: 66%;
     }
   }
@@ -104,7 +108,7 @@ const purchaseAmount = computed(() => BasketStore.purchaseAmount);
     }
   }
 
-  @include sm-screen() { 
+  @include sm-screen() {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);

@@ -1,65 +1,85 @@
 <template>
   <div class="product__wrapper">
-    <ProductCart v-for="(product, idx) in productList" :key="idx" :product="product" :addBasket="addBasket" :removeBasket="removeBasket" class="product" />
+    <div class="spinner" v-if="ProductStore.loading">
+      <Loader size="70px" />
+    </div>
+
+    <template v-else>
+      <ProductCart
+        v-for="(product, idx) in productList"
+        :key="idx"
+        :product="product"
+        :addBasket="addBasket"
+        :removeBasket="removeBasket"
+        class="product"
+      />
+    </template>
+
     <Footer :params="params" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, reactive, onMounted, watch } from 'vue'
+import { computed, reactive, onMounted, watch } from 'vue';
 import { useProductStore } from '@/store/product.store';
 import { useBasketStore } from '@/store/basket.store';
-import { ModBasic, ParamsRequest } from '@/interface/product'
+import { ModBasic, ParamsRequest } from '@/interface/product';
 
 const ProductStore = useProductStore();
 const BasketStore = useBasketStore();
 
 const addBasket = (product: ModBasic, quantity: number) => {
-  let changeProduct = BasketStore.shoppingList.find(item => item.id === product.id);
+  let changeProduct = BasketStore.shoppingList.find(
+    (item) => item.id === product.id,
+  );
 
   if (changeProduct) {
     product.quantity = quantity;
   } else {
     product.quantity = quantity;
-    BasketStore.shoppingList.push(product)
+    BasketStore.shoppingList.push(product);
   }
-}
+};
 
 const removeBasket = (product: ModBasic) => {
-  BasketStore.shoppingList = BasketStore.shoppingList.filter(item => item.id !== product.id)
-}  
+  BasketStore.shoppingList = BasketStore.shoppingList.filter(
+    (item) => item.id !== product.id,
+  );
+};
 
 const productList = computed(() => ProductStore.productList);
 
 const params = reactive<ParamsRequest>({
-  query: "product tech", 
-  page: 1, 
+  query: 'product tech',
+  page: 1,
   perPage: 10,
-  totalPage: 0
-})
+  totalPage: 0,
+});
 
-watch(() => params.page, (newVal) => {
-  console.log(newVal);
-  onRequest();
-})
+watch(
+  () => params.page,
+  (newVal) => {
+    console.log(newVal);
+    onRequest();
+  },
+);
 
 const onRequest = async () => {
-  let {query, page, perPage} = params;
+  let { query, page, perPage } = params;
 
   await ProductStore.getProduct({
     query,
-    orientation: "landscape",
+    orientation: 'landscape',
     page,
     perPage,
   }).then(() => {
     params.totalPage = ProductStore.totalPage || 0;
-  })
-}
+  });
+};
 
 onMounted(async () => {
   await onRequest();
-})
-
+});
 </script>
 
 <style lang="scss" scoped>
@@ -74,13 +94,22 @@ onMounted(async () => {
     width: 100%;
     margin-bottom: 8px;
 
-    @include sm-screen() { 
+    @include sm-screen() {
       margin-bottom: 0px;
     }
 
-    @include md-screen() { 
+    @include md-screen() {
       flex: 0 0 calc(50% - 10px);
     }
   }
+}
+
+.spinner {
+  width: 100%;
+  height: 100vh;
+  // padding-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
