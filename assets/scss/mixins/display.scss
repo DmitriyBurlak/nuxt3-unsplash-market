@@ -4,24 +4,24 @@ $breakpoint-md-min: 768px;
 $breakpoint-lg-min: 1000px;
 
 @mixin sm-screen() {
-    @media (min-width: $breakpoint-sm-min) {
-        @content;
-    }
+  @media (min-width: $breakpoint-sm-min) {
+    @content;
+  }
 }
 @mixin md-screen() {
-    @media (min-width: $breakpoint-md-min) {
-        @content;
-    }
+  @media (min-width: $breakpoint-md-min) {
+    @content;
+  }
 }
 
 @mixin lg-screen() {
-    @media (min-width: $breakpoint-lg-min) {
-        @content;
-    }
+  @media (min-width: $breakpoint-lg-min) {
+    @content;
+  }
 }
 
 @mixin xl-screen() {
-    @media (min-width: $breakpoint-xl-min) {
-        @content;
-    }
+  @media (min-width: $breakpoint-xl-min) {
+    @content;
+  }
 }

@@ -3,4 +3,3 @@
     <BlockProducts />
   </div>
 </template>
-

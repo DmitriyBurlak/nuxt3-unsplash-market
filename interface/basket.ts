@@ -1,5 +1,5 @@
-import { ModBasic } from '@/interface/product'
+import { ModBasic } from '@/interface/product';
 
 export interface BasketState {
-  shoppingList: ModBasic[]
+  shoppingList: ModBasic[];
 }

@@ -6,6 +6,7 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
+    "format": "prettier --write \"**/*.{js,ts,vue,scss,html,md,json}\" --ignore-path .gitignore",
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
@@ -17,6 +18,7 @@
   "dependencies": {
     "@pinia/nuxt": "^0.4.11",
     "pinia": "^2.1.4",
+    "prettier": "^2.8.8",
     "sass": "^1.63.6",
     "unsplash-js": "^7.0.18",
     "vuejs-paginate-next": "^1.0.2"

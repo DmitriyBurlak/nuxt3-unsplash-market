@@ -4,6 +4,6 @@ export default defineNuxtConfig({
   modules: ['@pinia/nuxt'],
   css: ['~/assets/scss/app.scss'],
   runtimeConfig: {
-    accessKey: process.env.ACCESS_KEY
-  }
-})
+    accessKey: process.env.ACCESS_KEY,
+  },
+});
